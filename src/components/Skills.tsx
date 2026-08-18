@@ -45,12 +45,11 @@ export default function Skills() {
         {groups.map((group, i) => (
           <Reveal key={group.title} delay={(i % 3) * 0.08}>
             <h3 className="type-label text-dim">{group.title}</h3>
-            <ul className="mt-5 flex flex-wrap gap-2">
+            {/* Lista simples em vez de pills: nada aqui é clicável, então
+                borda e fundo só criavam peso visual sem significado. */}
+            <ul className="mt-5 space-y-2.5">
               {group.items.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-md border border-line bg-surface/50 px-3 py-1.5 text-xs text-muted transition-colors hover:border-white/20 hover:text-fg"
-                >
+                <li key={item} className="text-[15px] text-muted">
                   {item}
                 </li>
               ))}

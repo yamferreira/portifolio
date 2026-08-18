@@ -7,7 +7,6 @@
 export const site = {
   name: "Yam Ferreira",
   role: "Back-End Developer",
-  stackLine: "Java & Spring Boot · AWS",
   tagline:
     "Construo back-ends orientados a eventos — filas, mensageria e serviços que continuam de pé quando o volume cresce.",
   email: "yamferreira6@gmail.com",
