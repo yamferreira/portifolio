@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
-import Background from "@/components/Background";
 import FontToggle from "@/components/FontToggle";
 import SideNav from "@/components/SideNav";
 import { site } from "@/data/site";
@@ -64,7 +63,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: fontBootScript }} />
       </head>
       <body className="min-h-full">
-        <Background />
         <SideNav />
         <FontToggle />
         <main>{children}</main>

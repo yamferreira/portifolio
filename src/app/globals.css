@@ -1,22 +1,21 @@
 @import "tailwindcss";
 
 /* ── Design tokens ─────────────────────────────────────────────
-   Um único acento quente (terracota/âmbar) sobre uma base quase
-   preta. Para trocar a identidade do site inteiro, mude
-   --color-accent aqui.
+   Monocromático por decisão: preto verdadeiro, branco quase puro
+   e dois cinzas. A hierarquia vem de peso, tamanho e espaço —
+   nunca de cor. Não existe cor de destaque, e não deve existir.
    ────────────────────────────────────────────────────────────── */
 @theme {
-  --color-bg: #08080a;
-  --color-surface: #0e0e11;
-  --color-surface-2: #15151a;
-  --color-line: #1f1f26;
-  --color-fg: #ededf0;
-  --color-muted: #8b8b95;
-  --color-dim: #56565f;
-  --color-accent: #ff6a3d;
-  --color-accent-dim: #a8452a;
+  --color-bg: #000000;
+  --color-surface: #0a0a0a;
+  --color-surface-2: #141414;
+  --color-line: #1f1f1f;
+  --color-fg: #f5f5f7;
+  --color-muted: #86868b;
+  --color-dim: #6e6e73;
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont,
+    ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
 }
 
@@ -27,8 +26,8 @@
 
 :root {
   color-scheme: dark;
-  --font-display-stack: var(--font-geist-sans), ui-sans-serif, system-ui,
-    sans-serif;
+  --font-display-stack: var(--font-geist-sans), -apple-system,
+    BlinkMacSystemFont, ui-sans-serif, system-ui, sans-serif;
 }
 
 [data-font="mono"] {
@@ -55,15 +54,67 @@ body {
   color: var(--color-fg);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Escala tipográfica ───────────────────────────────────────
+   Tracking é específico por tamanho: texto grande precisa de
+   tracking negativo (as letras "abrem" ao crescer), texto pequeno
+   pede um respiro positivo. Leading anda no sentido inverso do
+   tamanho. Por isso cada degrau carrega os três valores juntos.
+   ────────────────────────────────────────────────────────────── */
+.type-display {
+  font-size: clamp(3rem, 11vw, 7.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  font-optical-sizing: auto;
+}
+
+.type-title {
+  font-size: clamp(2rem, 5.5vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.028em;
+  font-weight: 700;
+}
+
+.type-heading {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+/* Subtítulo do hero e aberturas de seção: grande, mas leve. */
+.type-lead {
+  font-size: clamp(1.125rem, 2.1vw, 1.5rem);
+  line-height: 1.45;
+  letter-spacing: -0.012em;
+  font-weight: 400;
+}
+
+.type-body {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+/* Rótulos: pequenos, então tracking positivo para não fecharem. */
+.type-label {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  font-weight: 500;
 }
 
 ::selection {
-  background-color: var(--color-accent);
-  color: #08080a;
+  background-color: var(--color-fg);
+  color: var(--color-bg);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-fg);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -83,69 +134,9 @@ body {
   border: 3px solid var(--color-bg);
 }
 
-/* ── Fundo animado ────────────────────────────────────────────
-   Gradient mesh feito só com CSS: três manchas radiais borradas
-   em keyframes lentos. Anima transform/opacity, então roda no
-   compositor e não custa quase nada.
-   ────────────────────────────────────────────────────────────── */
-@keyframes drift-a {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(6vw, 4vh, 0) scale(1.15);
-  }
-}
-
-@keyframes drift-b {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1.1);
-  }
-  50% {
-    transform: translate3d(-7vw, -5vh, 0) scale(0.95);
-  }
-}
-
-@keyframes drift-c {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(0.95);
-  }
-  50% {
-    transform: translate3d(4vw, -6vh, 0) scale(1.2);
-  }
-}
-
-.blob {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(90px);
-  will-change: transform;
-}
-
-.blob-a {
-  animation: drift-a 26s ease-in-out infinite;
-}
-.blob-b {
-  animation: drift-b 34s ease-in-out infinite;
-}
-.blob-c {
-  animation: drift-c 30s ease-in-out infinite;
-}
-
-/* Grão sutil por cima de tudo, para tirar o aspecto "chapado". */
-.grain {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  .blob {
-    animation: none !important;
   }
   *,
   *::before,
