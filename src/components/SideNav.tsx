@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useEffect, useState } from "react";
 import { navItems, site } from "@/data/site";
 
@@ -9,6 +10,14 @@ import { navItems, site } from "@/data/site";
  */
 export default function SideNav() {
   const [active, setActive] = useState<string>(navItems[0].id);
+  const reduceMotion = useReducedMotion();
+
+  // O monograma recua ao sair do topo: some um pouco e encolhe, para
+  // deixar de disputar atenção com o conteúdo. Como é derivado do
+  // scroll, acompanha o dedo/roda 1:1 — nada de animação disparada.
+  const { scrollY } = useScroll();
+  const monogramOpacity = useTransform(scrollY, [0, 180], [1, 0.4]);
+  const monogramScale = useTransform(scrollY, [0, 180], [1, 0.85]);
 
   useEffect(() => {
     const sections = navItems
@@ -53,12 +62,21 @@ export default function SideNav() {
   return (
     <>
       {/* Monograma */}
-      <a
+      <motion.a
         href="#home"
-        className="fixed left-5 top-5 z-50 font-mono text-sm tracking-[0.3em] text-fg transition-colors hover:text-fg md:left-8 md:top-8"
+        style={
+          reduceMotion
+            ? undefined
+            : {
+                opacity: monogramOpacity,
+                scale: monogramScale,
+                transformOrigin: "left top",
+              }
+        }
+        className="fixed left-5 top-5 z-50 text-sm font-semibold tracking-[0.12em] text-fg md:left-8 md:top-8"
       >
-        YF<span className="text-fg">.</span>
-      </a>
+        YF.
+      </motion.a>
 
       {/* Trilho lateral — desktop */}
       <nav
@@ -83,10 +101,8 @@ export default function SideNav() {
                     }`}
                   />
                   <span
-                    className={`font-mono text-[11px] uppercase tracking-[0.18em] transition-colors duration-300 ${
-                      isActive
-                        ? "text-fg"
-                        : "text-dim group-hover:text-muted"
+                    className={`type-label transition-colors duration-300 ${
+                      isActive ? "text-fg" : "text-dim group-hover:text-muted"
                     }`}
                   >
                     {item.label}
@@ -105,7 +121,7 @@ export default function SideNav() {
           href={site.github}
           target="_blank"
           rel="noreferrer"
-          className="font-mono text-[10px] uppercase tracking-[0.18em] text-dim transition-colors hover:text-fg"
+          className="type-label text-dim transition-colors duration-200 hover:text-fg"
         >
           GitHub
         </a>
@@ -113,7 +129,7 @@ export default function SideNav() {
           href={site.linkedin}
           target="_blank"
           rel="noreferrer"
-          className="font-mono text-[10px] uppercase tracking-[0.18em] text-dim transition-colors hover:text-fg"
+          className="type-label text-dim transition-colors duration-200 hover:text-fg"
         >
           LinkedIn
         </a>
@@ -132,7 +148,7 @@ export default function SideNav() {
                 <a
                   href={`#${item.id}`}
                   aria-current={isActive ? "true" : undefined}
-                  className={`block whitespace-nowrap rounded-full px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-wide transition-colors sm:px-3 sm:text-[11px] ${
+                  className={`type-label block whitespace-nowrap rounded-full px-3 py-1.5 transition-colors duration-200 ${
                     isActive
                       ? "bg-white/10 text-fg"
                       : "text-dim hover:text-fg"

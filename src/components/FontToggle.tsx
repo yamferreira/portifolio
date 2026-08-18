@@ -27,7 +27,7 @@ export default function FontToggle() {
       onClick={toggle}
       aria-label="Alternar entre fonte sans-serif e monospace"
       title="Trocar a fonte do site"
-      className="fixed right-5 top-5 z-50 rounded-full border border-line bg-surface/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-dim backdrop-blur transition-colors hover:border-white/20 hover:text-fg md:right-8 md:top-8"
+      className="type-label fixed right-5 top-5 z-50 rounded-full border border-line bg-surface/70 px-3.5 py-2 text-dim backdrop-blur-md transition-colors duration-200 hover:border-white/20 hover:text-fg md:right-8 md:top-8"
     >
       <span className="font-label-sans">Aa</span>
       <span className="font-label-mono">{"{ }"}</span>
