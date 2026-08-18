@@ -21,15 +21,14 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`mx-auto w-full max-w-6xl scroll-mt-24 px-6 py-24 sm:px-8 md:py-32 lg:pl-40 lg:pr-10 ${className}`}
+      className={`mx-auto w-full max-w-6xl scroll-mt-24 px-6 py-28 sm:px-8 md:py-40 lg:py-48 lg:pl-40 lg:pr-10 ${className}`}
     >
       <Reveal>
-        <div className="mb-12 flex items-center gap-4 md:mb-16">
-          <span className="font-mono text-xs text-accent">{index}</span>
-          <h2 className="font-display text-2xl font-medium tracking-tight text-fg sm:text-3xl">
-            {title}
-          </h2>
-          <span className="h-px flex-1 bg-line" />
+        {/* Sem régua nem divisória: o espaço abaixo já separa o cabeçalho
+            do conteúdo, e um título por vez fica com a tela toda. */}
+        <div className="mb-16 md:mb-24">
+          <span className="type-label text-dim">{index}</span>
+          <h2 className="type-title mt-4 font-display text-fg">{title}</h2>
         </div>
       </Reveal>
       {children}

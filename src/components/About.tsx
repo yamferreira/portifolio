@@ -10,8 +10,8 @@ const facts = [
 export default function About() {
   return (
     <Section id="sobre" index="02" title="Sobre">
-      <div className="grid gap-12 md:grid-cols-[1.4fr_1fr] md:gap-16">
-        <Reveal className="space-y-5 text-base leading-relaxed text-muted sm:text-lg">
+      <div className="grid gap-16 md:grid-cols-[1.4fr_1fr] md:gap-24">
+        <Reveal className="type-lead space-y-8 text-muted">
           <p>
             Antes de programar, eu empreendia. Foi ali que aprendi a olhar para
             um problema pelo custo que ele gera — e essa é a mesma pergunta que
@@ -35,11 +35,9 @@ export default function About() {
         <Reveal delay={0.12}>
           <dl className="divide-y divide-line border-y border-line">
             {facts.map((fact) => (
-              <div key={fact.label} className="py-4">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-dim">
-                  {fact.label}
-                </dt>
-                <dd className="mt-1.5 text-sm text-fg">{fact.value}</dd>
+              <div key={fact.label} className="py-6">
+                <dt className="type-label text-dim">{fact.label}</dt>
+                <dd className="mt-2 text-[15px] text-fg">{fact.value}</dd>
               </div>
             ))}
           </dl>

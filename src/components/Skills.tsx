@@ -41,17 +41,15 @@ const groups = [
 export default function Skills() {
   return (
     <Section id="stack" index="04" title="Stack">
-      <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-x-16 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
         {groups.map((group, i) => (
           <Reveal key={group.title} delay={(i % 3) * 0.08}>
-            <h3 className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
-              {group.title}
-            </h3>
-            <ul className="mt-4 flex flex-wrap gap-2">
+            <h3 className="type-label text-dim">{group.title}</h3>
+            <ul className="mt-5 flex flex-wrap gap-2">
               {group.items.map((item) => (
                 <li
                   key={item}
-                  className="rounded-md border border-line bg-surface/50 px-3 py-1.5 text-xs text-muted transition-colors hover:border-accent/40 hover:text-fg"
+                  className="rounded-md border border-line bg-surface/50 px-3 py-1.5 text-xs text-muted transition-colors hover:border-white/20 hover:text-fg"
                 >
                   {item}
                 </li>
