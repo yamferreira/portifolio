@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Design tokens ─────────────────────────────────────────────
+   Um único acento quente (terracota/âmbar) sobre uma base quase
+   preta. Para trocar a identidade do site inteiro, mude
+   --color-accent aqui.
+   ────────────────────────────────────────────────────────────── */
+@theme {
+  --color-bg: #08080a;
+  --color-surface: #0e0e11;
+  --color-surface-2: #15151a;
+  --color-line: #1f1f26;
+  --color-fg: #ededf0;
+  --color-muted: #8b8b95;
+  --color-dim: #56565f;
+  --color-accent: #ff6a3d;
+  --color-accent-dim: #a8452a;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
 }
 
+/* Fonte de display: trocável em runtime pelo toggle (easter egg). */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display-stack);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: dark;
+  --font-display-stack: var(--font-geist-sans), ui-sans-serif, system-ui,
+    sans-serif;
+}
+
+[data-font="mono"] {
+  --font-display-stack: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+/* Rótulo do toggle de fonte: quem manda é o atributo no <html>, não o React. */
+.font-label-mono {
+  display: none;
+}
+[data-font="mono"] .font-label-sans {
+  display: none;
+}
+[data-font="mono"] .font-label-mono {
+  display: inline;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: #08080a;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Scrollbar discreta, no tom da página. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-line);
+  border-radius: 999px;
+  border: 3px solid var(--color-bg);
+}
+
+/* ── Fundo animado ────────────────────────────────────────────
+   Gradient mesh feito só com CSS: três manchas radiais borradas
+   em keyframes lentos. Anima transform/opacity, então roda no
+   compositor e não custa quase nada.
+   ────────────────────────────────────────────────────────────── */
+@keyframes drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6vw, 4vh, 0) scale(1.15);
+  }
+}
+
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.1);
+  }
+  50% {
+    transform: translate3d(-7vw, -5vh, 0) scale(0.95);
+  }
+}
+
+@keyframes drift-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+  }
+  50% {
+    transform: translate3d(4vw, -6vh, 0) scale(1.2);
+  }
+}
+
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.blob-a {
+  animation: drift-a 26s ease-in-out infinite;
+}
+.blob-b {
+  animation: drift-b 34s ease-in-out infinite;
+}
+.blob-c {
+  animation: drift-c 30s ease-in-out infinite;
+}
+
+/* Grão sutil por cima de tudo, para tirar o aspecto "chapado". */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .blob {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
