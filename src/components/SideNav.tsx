@@ -55,9 +55,9 @@ export default function SideNav() {
       {/* Monograma */}
       <a
         href="#home"
-        className="fixed left-5 top-5 z-50 font-mono text-sm tracking-[0.3em] text-fg transition-colors hover:text-accent md:left-8 md:top-8"
+        className="fixed left-5 top-5 z-50 font-mono text-sm tracking-[0.3em] text-fg transition-colors hover:text-fg md:left-8 md:top-8"
       >
-        YF<span className="text-accent">.</span>
+        YF<span className="text-fg">.</span>
       </a>
 
       {/* Trilho lateral — desktop */}
@@ -78,14 +78,14 @@ export default function SideNav() {
                   <span
                     className={`h-px transition-all duration-300 ${
                       isActive
-                        ? "w-9 bg-accent"
+                        ? "w-9 bg-fg"
                         : "w-4 bg-dim group-hover:w-7 group-hover:bg-muted"
                     }`}
                   />
                   <span
                     className={`font-mono text-[11px] uppercase tracking-[0.18em] transition-colors duration-300 ${
                       isActive
-                        ? "text-accent"
+                        ? "text-fg"
                         : "text-dim group-hover:text-muted"
                     }`}
                   >
@@ -105,7 +105,7 @@ export default function SideNav() {
           href={site.github}
           target="_blank"
           rel="noreferrer"
-          className="font-mono text-[10px] uppercase tracking-[0.18em] text-dim transition-colors hover:text-accent"
+          className="font-mono text-[10px] uppercase tracking-[0.18em] text-dim transition-colors hover:text-fg"
         >
           GitHub
         </a>
@@ -113,7 +113,7 @@ export default function SideNav() {
           href={site.linkedin}
           target="_blank"
           rel="noreferrer"
-          className="font-mono text-[10px] uppercase tracking-[0.18em] text-dim transition-colors hover:text-accent"
+          className="font-mono text-[10px] uppercase tracking-[0.18em] text-dim transition-colors hover:text-fg"
         >
           LinkedIn
         </a>
@@ -134,7 +134,7 @@ export default function SideNav() {
                   aria-current={isActive ? "true" : undefined}
                   className={`block whitespace-nowrap rounded-full px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-wide transition-colors sm:px-3 sm:text-[11px] ${
                     isActive
-                      ? "bg-accent/10 text-accent"
+                      ? "bg-white/10 text-fg"
                       : "text-dim hover:text-fg"
                   }`}
                 >

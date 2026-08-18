@@ -72,9 +72,9 @@ export default function ProjectCover({ slug, index }: ProjectCoverProps) {
           <stop offset="100%" stopColor="var(--color-bg)" />
         </linearGradient>
         <radialGradient id={glowId}>
-          <stop offset="0%" stopColor="var(--color-accent)" stopOpacity={0.3} />
-          <stop offset="60%" stopColor="var(--color-accent)" stopOpacity={0.09} />
-          <stop offset="100%" stopColor="var(--color-accent)" stopOpacity={0} />
+          <stop offset="0%" stopColor="var(--color-fg)" stopOpacity={0.3} />
+          <stop offset="60%" stopColor="var(--color-fg)" stopOpacity={0.09} />
+          <stop offset="100%" stopColor="var(--color-fg)" stopOpacity={0} />
         </radialGradient>
       </defs>
 
@@ -111,7 +111,7 @@ export default function ProjectCover({ slug, index }: ProjectCoverProps) {
                 cy={node.y}
                 r={node.r + 6}
                 fill="none"
-                stroke="var(--color-accent)"
+                stroke="var(--color-fg)"
                 strokeOpacity={0.5}
                 strokeWidth={1}
               />
@@ -120,8 +120,8 @@ export default function ProjectCover({ slug, index }: ProjectCoverProps) {
               cx={node.x}
               cy={node.y}
               r={node.r}
-              fill={isAccent ? "var(--color-accent)" : "var(--color-fg)"}
-              fillOpacity={isAccent ? 1 : 0.55}
+              fill="var(--color-fg)"
+              fillOpacity={isAccent ? 1 : 0.45}
             />
           </g>
         );
