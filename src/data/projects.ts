@@ -1,10 +1,10 @@
 export type Project = {
-  /** Usado como seed da capa gerada — mudar altera o desenho do card. */
+  /** Identificador estável do projeto — usado como key na listagem. */
   slug: string;
   title: string;
-  /** Uma linha, aparece sempre no card. */
+  /** Uma linha: o que o projeto é. */
   summary: string;
-  /** Detalhe técnico, aparece no overlay de hover. */
+  /** Detalhe técnico, exibido abaixo do resumo no card. */
   highlight: string;
   stack: string[];
   repo: string | null;
