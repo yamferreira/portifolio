@@ -31,7 +31,7 @@ export const projects: Project[] = [
     highlight:
       "CRUD completo, autenticação social via NextAuth, agendamento com guest checkout e arquitetura single-tenant.",
     stack: ["Next.js", "React", "Prisma", "PostgreSQL", "TailwindCSS", "NextAuth"],
-    repo: "https://github.com/yamferreira/barbeariaa",
+    repo: "https://github.com/yamferreira/barbershop-appointment",
   },
   {
     slug: "ticket-marketplace",
@@ -50,8 +50,8 @@ export const projects: Project[] = [
     summary:
       "Boilerplate de SaaS com assinatura, autenticação e landing page prontas.",
     highlight:
-      "Integração de pagamentos com Stripe, autenticação via Auth.js e landing page pronta para produção.",
-    stack: ["Next.js", "Firebase", "Auth.js", "Stripe", "PostgreSQL", "TailwindCSS"],
+      "Integração de pagamentos com Stripe, autenticação via Auth.js e cliente da Stripe resolvido de forma idempotente a partir do usuário no Firestore.",
+    stack: ["Next.js", "Firebase", "Auth.js", "Stripe", "TailwindCSS"],
     repo: "https://github.com/yamferreira/saas",
   },
   {
