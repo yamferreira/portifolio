@@ -1,16 +1,23 @@
 "use client";
 
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navItems, site } from "@/data/site";
 
 /**
  * Navegação fixa com indicador de seção ativa.
  * Desktop: trilho vertical à esquerda. Mobile: pílula fixa no rodapé.
+ *
+ * Fora da home — em /projetos/[slug], por exemplo — as âncoras de seção
+ * não apontam para nada, então só ficam o monograma (que volta para a
+ * home) e os links sociais. A navegação da página é do próprio conteúdo.
  */
 export default function SideNav() {
   const [active, setActive] = useState<string>(navItems[0].id);
   const reduceMotion = useReducedMotion();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   // O monograma recua ao sair do topo: some um pouco e encolhe, para
   // deixar de disputar atenção com o conteúdo. Como é derivado do
@@ -20,6 +27,8 @@ export default function SideNav() {
   const monogramScale = useTransform(scrollY, [0, 180], [1, 0.85]);
 
   useEffect(() => {
+    if (!isHome) return;
+
     const sections = navItems
       .map((item) => document.getElementById(item.id))
       .filter((el): el is HTMLElement => el !== null);
@@ -57,13 +66,15 @@ export default function SideNav() {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+    // Voltar de um case study para a home remonta as seções: o observer
+    // precisa ser refeito, senão o indicador fica congelado.
+  }, [isHome]);
 
   return (
     <>
       {/* Monograma */}
       <motion.a
-        href="#home"
+        href="/#home"
         style={
           reduceMotion
             ? undefined
@@ -79,6 +90,7 @@ export default function SideNav() {
       </motion.a>
 
       {/* Trilho lateral — desktop */}
+      {isHome && (
       <nav
         aria-label="Navegação principal"
         className="fixed left-8 top-1/2 z-40 hidden -translate-y-1/2 lg:block"
@@ -113,6 +125,7 @@ export default function SideNav() {
           })}
         </ul>
       </nav>
+      )}
 
       {/* Redes sociais fixas — desktop */}
       <div className="fixed bottom-8 left-8 z-40 hidden flex-col items-start gap-3 lg:flex">
@@ -136,6 +149,7 @@ export default function SideNav() {
       </div>
 
       {/* Pílula de navegação — mobile */}
+      {isHome && (
       <nav
         aria-label="Navegação principal"
         className="fixed inset-x-0 bottom-4 z-40 flex justify-center px-4 lg:hidden"
@@ -161,6 +175,7 @@ export default function SideNav() {
           })}
         </ul>
       </nav>
+      )}
     </>
   );
 }
