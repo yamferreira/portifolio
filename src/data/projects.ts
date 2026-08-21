@@ -1,5 +1,5 @@
 export type Project = {
-  /** Identificador estável do projeto — usado como key na listagem. */
+  /** Identificador estável do projeto, usado como key na listagem. */
   slug: string;
   title: string;
   /** Uma linha: o que o projeto é. */
@@ -34,19 +34,8 @@ export const projects: Project[] = [
     repo: "https://github.com/yamferreira/barbershop-appointment",
   },
   {
-    slug: "ticket-marketplace",
-    title: "Ticket Marketplace",
-    summary:
-      "API de marketplace de ingressos com controle de acesso por papéis.",
-    highlight:
-      "RBAC com papéis BUYER / ORGANIZER / ADMIN, autenticação stateless por JWT sobre Spring Security 6.",
-    stack: ["Spring Boot 3", "Spring Security 6", "JWT", "PostgreSQL"],
-    // TODO: adicionar o link do repositório.
-    repo: null,
-  },
-  {
     slug: "saas",
-    title: "Template SaaS",
+    title: "SaaS Boilerplate",
     summary:
       "Boilerplate de SaaS com assinatura, autenticação e landing page prontas.",
     highlight:
@@ -68,8 +57,19 @@ export const projects: Project[] = [
     title: "Cadastro de Usuário",
     summary: "CRUD de usuários em Spring Boot, com foco em fundamentos de API.",
     highlight:
-      "Camadas de controller, service e repository bem separadas — base limpa para evoluir em projetos maiores.",
+      "Camadas de controller, service e repository bem separadas, base limpa para evoluir em projetos maiores.",
     stack: ["Java", "Spring Boot"],
     repo: "https://github.com/yamferreira/cadastro-usuario",
+  },
+  {
+    slug: "ticket-marketplace",
+    title: "Ticket Marketplace",
+    summary:
+      "API de marketplace de ingressos com controle de acesso por papéis.",
+    highlight:
+      "RBAC com papéis BUYER / ORGANIZER / ADMIN, autenticação stateless por JWT sobre Spring Security 6.",
+    stack: ["Spring Boot 3", "Spring Security 6", "JWT", "PostgreSQL"],
+    // TODO: adicionar o link do repositório.
+    repo: null,
   },
 ];
