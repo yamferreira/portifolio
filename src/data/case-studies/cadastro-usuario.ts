@@ -14,18 +14,14 @@ export const cadastroUsuario: CaseStudy = {
       "Requisição HTTP em /usuario → UsuarioController → UsuarioService (regras e atualização parcial) → UsuarioRepository (Spring Data JPA) → H2 em memória, criado na subida e descartado no fim.",
   },
   demos: [
-    // TODO: gravar as chamadas e trocar os caminhos abaixo.
     {
-      kind: "video",
-      label: "POST /usuario",
-      src: "/projects/cadastro-usuario/post-usuario.mp4",
-      caption: "Criação de um usuário e conferência no console do H2.",
-    },
-    {
-      kind: "video",
-      label: "PUT /usuario?id=1",
-      src: "/projects/cadastro-usuario/put-usuario.mp4",
-      caption: "Atualização parcial: enviar só o nome não apaga o e-mail.",
+      kind: "link",
+      label: "Demonstração completa",
+      href: "https://www.linkedin.com/posts/yamferreira_java-springboot-desenvolvimento-ugcPost-7388970320575049728-_xiG",
+      source: "LinkedIn",
+      poster: "/projects/cadastro-usuario/demo-poster.jpg",
+      caption:
+        "Walkthrough do CRUD: as chamadas no Insomnia, a atualização parcial em ação e a conferência no console do H2.",
     },
   ],
   decisions: [
@@ -39,7 +35,7 @@ export const cadastroUsuario: CaseStudy = {
     },
     {
       decision: "E-mail com restrição de unicidade no banco",
-      why: "O e-mail é a chave por onde o usuário é buscado e removido. Deixar a garantia no `@Column(unique = true)` significa que dois cadastros simultâneos não conseguem criar o duplicado — a validação em código sozinha perderia essa corrida.",
+      why: "O e-mail é a chave por onde o usuário é buscado e removido. Deixar a garantia no `@Column(unique = true)` significa que dois cadastros simultâneos não conseguem criar o duplicado. A validação em código sozinha perderia essa corrida.",
     },
     {
       decision: "Injeção por construtor, sem @Autowired em campo",
@@ -50,7 +46,7 @@ export const cadastroUsuario: CaseStudy = {
     language: "java",
     file: "src/main/java/com/yamferreira/cadastro_usuario/business/UsuarioService.java",
     description:
-      "A atualização parcial. Cada campo que vier nulo no corpo cai de volta no valor que já estava gravado — o cliente pode mandar só o que mudou sem zerar o resto do registro.",
+      "A atualização parcial. Cada campo que vier nulo no corpo cai de volta no valor que já estava gravado, então o cliente pode mandar só o que mudou sem zerar o resto do registro.",
     code: `public void atualizarUsuarioId(Integer id, Usuario usuario) {
     Usuario usuarioEntity = repository.findById(id).orElseThrow(
             () -> new RuntimeException("Usuario não encontrado"));
