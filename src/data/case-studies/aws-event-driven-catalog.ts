@@ -15,7 +15,7 @@ export const awsEventDrivenCatalog: CaseStudy = {
     "LocalStack",
   ],
   problem:
-    "Quando um produto muda de preço ou descrição, muita coisa precisa saber disso — o catálogo, o relatório do vendedor, quem for entrar depois. Fazer a API avisar cada um deles na mão significa que ela trava junto com o mais lento, e que cada novo interessado exige mexer no código de quem cadastra o produto.",
+    "Quando um produto muda de preço ou descrição, muita coisa precisa saber disso: o catálogo, o relatório do vendedor, quem for entrar depois. Fazer a API avisar cada um deles na mão significa que ela trava junto com o mais lento, e que cada novo interessado exige mexer no código de quem cadastra o produto.",
   repo: "https://github.com/yamferreira/aws-event-driven-catalog",
   // TODO: publicar um Swagger/OpenAPI e apontar aqui.
   apiDocs: null,
@@ -27,7 +27,7 @@ export const awsEventDrivenCatalog: CaseStudy = {
   demos: [
     // A demonstração completa tem 15 minutos e 44 MB. Hospedar isso aqui
     // pesaria mais que o site inteiro, e ninguém assiste a um vídeo de 15
-    // minutos no meio de um case study — então vira um card para o post
+    // minutos no meio de um case study, então vira um card para o post
     // original, com um frame do próprio vídeo como thumbnail.
     {
       kind: "link",
@@ -43,7 +43,7 @@ export const awsEventDrivenCatalog: CaseStudy = {
   decisions: [
     {
       decision: "SNS + SQS entre a API e o consumidor, em vez de chamada direta",
-      why: "A API publica o evento e devolve a resposta — ela não espera o processamento nem quebra se o consumidor estiver fora do ar. E como o SNS é fan-out, dá para pendurar um segundo assinante na fila sem tocar em uma linha do código que publica.",
+      why: "A API publica o evento e devolve a resposta: ela não espera o processamento nem quebra se o consumidor estiver fora do ar. E como o SNS é fan-out, dá para pendurar um segundo assinante na fila sem tocar em uma linha do código que publica.",
     },
     {
       decision: "O evento é publicado depois do save, dentro do service",
@@ -51,18 +51,18 @@ export const awsEventDrivenCatalog: CaseStudy = {
     },
     {
       decision: "MongoDB como base principal, S3 como saída do consumidor",
-      why: "Produto e categoria têm formato irregular e leitura por id — casa com documento. O S3 guarda o resultado do processamento assíncrono como JSON por ownerId, que é um caso de arquivo, não de consulta.",
+      why: "Produto e categoria têm formato irregular e leitura por id, o que casa com documento. O S3 guarda o resultado do processamento assíncrono como JSON por ownerId, que é um caso de arquivo, não de consulta.",
     },
     {
       decision: "LocalStack no docker-compose em vez de conta AWS para rodar",
-      why: "SNS, SQS e S3 sobem junto com a aplicação e o script de init cria tópico, fila, assinatura e bucket. Um `docker-compose up --build` levanta o projeto inteiro sem credencial nenhuma — o que também torna o ambiente descartável e reproduzível.",
+      why: "SNS, SQS e S3 sobem junto com a aplicação e o script de init cria tópico, fila, assinatura e bucket. Um `docker-compose up --build` levanta o projeto inteiro sem credencial nenhuma, o que também torna o ambiente descartável e reproduzível.",
     },
   ],
   snippet: {
     language: "java",
     file: "src/main/java/com/example/categoria_produto/services/ProductService.java",
     description:
-      "O ponto onde a escrita vira evento. O service valida a categoria, grava no MongoDB e só então publica no SNS — a API responde ao cliente sem esperar o consumidor. Quem assina a fila é problema do SNS, não deste método.",
+      "O ponto onde a escrita vira evento. O service valida a categoria, grava no MongoDB e só então publica no SNS: a API responde ao cliente sem esperar o consumidor. Quem assina a fila é problema do SNS, não deste método.",
     code: `@Service
 public class ProductService {
 
@@ -79,7 +79,7 @@ public class ProductService {
         this.repository.save(newProduct);
 
         // Publica só depois do save: não se anuncia um produto que não entrou.
-        // Product.toString() serializa a entidade como JSON — é esse corpo que
+        // Product.toString() serializa a entidade como JSON: é esse corpo que
         // a Lambda recebe do outro lado da fila.
         this.snsService.publish(new MessageDTO(newProduct.toString()));
 

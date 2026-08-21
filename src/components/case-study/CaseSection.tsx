@@ -9,8 +9,8 @@ type CaseSectionProps = {
 };
 
 /**
- * Casca de seção do case study. Mesma gramática da home — numeral,
- * título grande, muito ar embaixo —, mas sem o recuo do trilho lateral:
+ * Casca de seção do case study. Mesma gramática da home (numeral,
+ * título grande, muito ar embaixo), mas sem o recuo do trilho lateral:
  * nesta página a navegação de seções não existe.
  */
 export default function CaseSection({

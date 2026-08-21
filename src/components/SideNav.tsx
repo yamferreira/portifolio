@@ -9,7 +9,7 @@ import { navItems, site } from "@/data/site";
  * Navegação fixa com indicador de seção ativa.
  * Desktop: trilho vertical à esquerda. Mobile: pílula fixa no rodapé.
  *
- * Fora da home — em /projetos/[slug], por exemplo — as âncoras de seção
+ * Fora da home (em /projetos/[slug], por exemplo) as âncoras de seção
  * não apontam para nada, então só ficam o monograma (que volta para a
  * home) e os links sociais. A navegação da página é do próprio conteúdo.
  */
@@ -21,7 +21,7 @@ export default function SideNav() {
 
   // O monograma recua ao sair do topo: some um pouco e encolhe, para
   // deixar de disputar atenção com o conteúdo. Como é derivado do
-  // scroll, acompanha o dedo/roda 1:1 — nada de animação disparada.
+  // scroll, acompanha o dedo/roda 1:1, sem animação disparada.
   const { scrollY } = useScroll();
   const monogramOpacity = useTransform(scrollY, [0, 180], [1, 0.4]);
   const monogramScale = useTransform(scrollY, [0, 180], [1, 0.85]);
@@ -89,7 +89,7 @@ export default function SideNav() {
         YF.
       </motion.a>
 
-      {/* Trilho lateral — desktop */}
+      {/* Trilho lateral (desktop) */}
       {isHome && (
       <nav
         aria-label="Navegação principal"
@@ -127,7 +127,7 @@ export default function SideNav() {
       </nav>
       )}
 
-      {/* Redes sociais fixas — desktop */}
+      {/* Redes sociais fixas (desktop) */}
       <div className="fixed bottom-8 left-8 z-40 hidden flex-col items-start gap-3 lg:flex">
         <span className="h-12 w-px bg-line" />
         <a
@@ -148,7 +148,7 @@ export default function SideNav() {
         </a>
       </div>
 
-      {/* Pílula de navegação — mobile */}
+      {/* Pílula de navegação (mobile) */}
       {isHome && (
       <nav
         aria-label="Navegação principal"

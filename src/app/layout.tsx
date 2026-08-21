@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: `${site.name} — ${site.role}`,
+  title: `${site.name} · ${site.role}`,
   description: site.tagline,
   keywords: [
     "Yam Ferreira",
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     url: site.url,
-    title: `${site.name} — ${site.role}`,
+    title: `${site.name} · ${site.role}`,
     description: site.tagline,
     siteName: site.name,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.role}`,
+    title: `${site.name} · ${site.role}`,
     description: site.tagline,
   },
 };

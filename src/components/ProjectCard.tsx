@@ -29,7 +29,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     : null;
   const externalHref = project.demo ?? project.repo;
 
-  // O card inteiro é clicável por um link esticado sobre ele — um só,
+  // O card inteiro é clicável por um link esticado sobre ele, um só,
   // porque dois esticados sobrepostos disputariam o mesmo clique. A
   // prioridade é a mesma do rótulo: case study, depois demo, depois
   // repositório.
@@ -51,7 +51,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         <p className="text-[15px] leading-relaxed text-muted">
           {project.summary}
         </p>
-        {/* Antes isto vivia num overlay de hover — invisível no celular. */}
+        {/* Antes isto vivia num overlay de hover, invisível no celular. */}
         <p className="mt-4 flex-1 text-sm leading-relaxed text-dim">
           {project.highlight}
         </p>
@@ -95,7 +95,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                 href={project.repo}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={`${project.title} — abrir repositório no GitHub`}
+                aria-label={`${project.title}, abrir repositório no GitHub`}
                 className={linkClass(project.repo)}
               >
                 <GithubMark className="size-[18px]" />
@@ -104,7 +104,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             {caseHref ? (
               <Link
                 href={caseHref}
-                aria-label={`${project.title} — ler o case study`}
+                aria-label={`${project.title}, ler o case study`}
                 className={linkClass(caseHref)}
               >
                 <FileText aria-hidden="true" className="size-[18px]" />
@@ -115,7 +115,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                   href={project.demo}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={`${project.title} — abrir demo`}
+                  aria-label={`${project.title}, abrir demo`}
                   className={linkClass(project.demo ?? null)}
                 >
                   <ArrowUpRight aria-hidden="true" className="size-[18px]" />

@@ -3,7 +3,7 @@ import type { SVGProps } from "react";
 /**
  * Marca do GitHub. O lucide-react removeu os ícones de marca da
  * biblioteca, e o traço genérico de "git" não é reconhecível como o
- * link para o repositório — então esta fica desenhada aqui mesmo.
+ * link para o repositório, então esta fica desenhada aqui mesmo.
  * `currentColor` para herdar a cor do link, como qualquer ícone lucide.
  */
 export default function GithubMark(props: SVGProps<SVGSVGElement>) {

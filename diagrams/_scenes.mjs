@@ -5,7 +5,7 @@
  *
  * `w`/`h` são mínimos: a caixa cresce (em torno do próprio centro) se o
  * rótulo não couber. Rótulo em mais de uma linha mantém as caixas
- * estreitas — prefira quebrar a linha a alargar a coluna.
+ * estreitas: prefira quebrar a linha a alargar a coluna.
  */
 
 const W = 260; // largura mínima padrão de uma caixa
@@ -125,7 +125,7 @@ export const scenes = {
     arrow(action, prisma);
     arrow(prisma, db, { label: "última barreira contra corrida" });
     arrow(brasilapi, cron);
-    // BlockedDate é uma tabela do mesmo banco — desenhá-la como caixa
+    // BlockedDate é uma tabela do mesmo banco: desenhá-la como caixa
     // separada sugeriria um segundo armazenamento que não existe.
     arrow(cron, db, { label: "grava BlockedDate" });
   },

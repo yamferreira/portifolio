@@ -8,7 +8,7 @@ export default function NotFound() {
         Página não encontrada
       </h1>
       <p className="type-lead mt-6 max-w-lg text-muted">
-        O endereço não existe — ou o projeto que ficava aqui mudou de lugar.
+        O endereço não existe, ou o projeto que ficava aqui mudou de lugar.
       </p>
       <Link
         href="/"

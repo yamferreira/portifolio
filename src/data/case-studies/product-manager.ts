@@ -28,28 +28,28 @@ export const productManager: CaseStudy = {
       label: "Lista de produtos",
       src: "/projects/product-manager/lista.png",
       caption:
-        "O formulário e a tabela dividem a mesma tela — a listagem vem de GET /listar assim que a página monta.",
+        "O formulário e a tabela dividem a mesma tela; a listagem vem de GET /listar assim que a página monta.",
     },
     {
       kind: "image",
       label: "Editar produto",
       src: "/projects/product-manager/edicao.png",
       caption:
-        "Selecionar uma linha carrega o produto no mesmo formulário e troca o botão de cadastrar por alterar, remover e cancelar — uma tela para as quatro operações.",
+        "Selecionar uma linha carrega o produto no mesmo formulário e troca o botão de cadastrar por alterar, remover e cancelar: uma tela para as quatro operações.",
     },
   ],
   decisions: [
     {
       decision: "Monorepo com backend/ e frontend/ lado a lado",
-      why: "São dois artefatos com ciclos de build diferentes, mas um contrato só. Ficando no mesmo repositório, uma mudança de campo na API e o ajuste da tela cabem no mesmo commit — e nunca existe a dúvida de qual versão do front fala com qual versão da API.",
+      why: "São dois artefatos com ciclos de build diferentes, mas um contrato só. Ficando no mesmo repositório, uma mudança de campo na API e o ajuste da tela cabem no mesmo commit, e nunca existe a dúvida de qual versão do front fala com qual versão da API.",
     },
     {
       decision: "Cadastrar e alterar compartilham o mesmo método do service",
-      why: "As duas operações validam exatamente as mesmas regras e terminam no mesmo `save`. O que muda é só o status devolvido — 201 para criação, 200 para atualização —, então duplicar o método significaria duplicar a validação e deixar as duas versões divergirem com o tempo.",
+      why: "As duas operações validam exatamente as mesmas regras e terminam no mesmo `save`. O que muda é só o status devolvido (201 para criação, 200 para atualização), então duplicar o método significaria duplicar a validação e deixar as duas versões divergirem com o tempo.",
     },
     {
       decision: "Camadas separadas em controle / servico / repositorio",
-      why: "O controller não sabe o que é regra de negócio e o service não sabe o que é HTTP — a única coisa que ele devolve de HTTP é o status. Isso mantém a validação testável sem subir a camada web.",
+      why: "O controller não sabe o que é regra de negócio e o service não sabe o que é HTTP: a única coisa que ele devolve de HTTP é o status. Isso mantém a validação testável sem subir a camada web.",
     },
     {
       decision: "Spring Data JPA em vez de SQL escrito à mão",
@@ -60,7 +60,7 @@ export const productManager: CaseStudy = {
     language: "java",
     file: "backend/src/main/java/br/com/api/products/servico/ProdutoServico.java",
     description:
-      "Um método para cadastrar e alterar. A validação roda uma vez só para os dois caminhos e o parâmetro `acao` decide apenas o status HTTP da resposta — 201 quando é criação, 200 quando é atualização.",
+      "Um método para cadastrar e alterar. A validação roda uma vez só para os dois caminhos e o parâmetro `acao` decide apenas o status HTTP da resposta: 201 quando é criação, 200 quando é atualização.",
     code: `@Service
 public class ProdutoServico {
 
@@ -81,7 +81,7 @@ public class ProdutoServico {
             rm.setMensagem("O nome da marca é obrigatório!");
             return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
         } else {
-            // O save é o mesmo — o JPA decide entre INSERT e UPDATE pelo id.
+            // O save é o mesmo: o JPA decide entre INSERT e UPDATE pelo id.
             // A ação só escolhe o status que volta para o cliente.
             if (acao.equals("cadastrar")) {
                 return new ResponseEntity<ProdutoModelo>(pr.save(pm), HttpStatus.CREATED);

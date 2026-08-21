@@ -24,7 +24,7 @@ export default async function ArchitectureDiagram({
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={architecture.src}
-            alt={`Diagrama de arquitetura — ${architecture.caption}`}
+            alt={`Diagrama de arquitetura: ${architecture.caption}`}
             className={`mx-auto h-auto w-full max-w-3xl ${
               invert ? "[filter:invert(1)]" : ""
             }`}

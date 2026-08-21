@@ -15,7 +15,7 @@ const monoTheme = {
     "editor.background": "#0a0a0a",
     "editor.foreground": "#c9c9ce",
   },
-  // O Shiki lê `settings` quando ela existe — `tokenColors` é ignorado.
+  // O Shiki lê `settings` quando ela existe: `tokenColors` é ignorado.
   settings: [
     { settings: { foreground: "#c9c9ce", background: "#0a0a0a" } },
     {
@@ -66,7 +66,7 @@ const langs = ["java", "ts", "tsx", "sql", "bash", "json"] as const;
 let highlighterPromise: Promise<Highlighter> | null = null;
 
 /**
- * Um highlighter para todo o build — criar um por página carregaria as
+ * Um highlighter para todo o build: criar um por página carregaria as
  * gramáticas de novo a cada rota gerada.
  */
 function getHighlighter() {

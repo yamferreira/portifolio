@@ -5,7 +5,7 @@
  * JetBrains Mono. A escolha persiste no localStorage e é aplicada antes
  * da pintura pelo script inline no layout.
  *
- * O estado vive só no atributo `data-font` do <html> — o rótulo do botão
+ * O estado vive só no atributo `data-font` do <html>: o rótulo do botão
  * é resolvido por CSS. Sem useState/useEffect, não há render em cascata
  * nem divergência de hidratação.
  */
@@ -17,7 +17,7 @@ export default function FontToggle() {
     try {
       localStorage.setItem("yf-font", next);
     } catch {
-      // localStorage bloqueado (modo privado) — o toggle segue valendo na sessão.
+      // localStorage bloqueado (modo privado): o toggle segue valendo na sessão.
     }
   }
 

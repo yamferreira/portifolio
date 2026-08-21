@@ -2,7 +2,7 @@ import { highlight } from "@/lib/highlight";
 import type { Snippet } from "@/data/case-studies";
 
 /**
- * Bloco de código destacado no build pelo Shiki — nenhum JS de
+ * Bloco de código destacado no build pelo Shiki: nenhum JS de
  * highlight chega ao navegador.
  */
 export default async function CodeBlock({ snippet }: { snippet: Snippet }) {

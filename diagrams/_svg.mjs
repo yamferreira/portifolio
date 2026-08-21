@@ -2,14 +2,14 @@
  * Renderiza a mesma cena que vira `.excalidraw` como um SVG pronto para
  * a página, para o diagrama não depender de um export manual.
  *
- * O traço sai do rough.js — a mesma biblioteca que o Excalidraw usa por
- * baixo —, então o desenho tem o mesmo aspecto de rabisco. O `seed` de
+ * O traço sai do rough.js, a mesma biblioteca que o Excalidraw usa por
+ * baixo, então o desenho tem o mesmo aspecto de rabisco. O `seed` de
  * cada elemento é o mesmo gravado no `.excalidraw`, o que torna a saída
  * determinística: rodar de novo sem mudar a cena gera byte a byte o
  * mesmo arquivo, e o git não fica sujo à toa.
  *
  * O texto é desenhado como <text> numa sans do sistema. Um SVG carregado
- * por <img> não enxerga webfont nenhuma, e Excalifont não vem junto —
+ * por <img> não enxerga webfont nenhuma, e Excalifont não vem junto:
  * é exatamente o que o Excalidraw faz no modo de fonte "Normal".
  */
 import rough from "roughjs";

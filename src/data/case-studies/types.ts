@@ -1,5 +1,5 @@
 /**
- * Tipos do case study — a página longa de um projeto (/projetos/[slug]).
+ * Tipos do case study: a página longa de um projeto (/projetos/[slug]).
  *
  * Um case study por arquivo em `src/data/case-studies/`, registrado no
  * `index.ts` da pasta. Projeto sem arquivo simplesmente não ganha página:
@@ -20,7 +20,7 @@ export type DemoVideo = {
 };
 
 /**
- * Um vídeo que vive fora do site — tipicamente uma demonstração longa
+ * Um vídeo que vive fora do site, tipicamente uma demonstração longa
  * demais para hospedar aqui. Vira um card com thumbnail clicável, em vez
  * de um iframe: nenhum embed de terceiro combina com esta página, e um
  * player de 15 minutos não é o que alguém quer no meio de um case study.
@@ -51,7 +51,7 @@ export type DemoImage = {
   /** Caminho em /public, ex: "/projects/slug/home.png". */
   src: string;
   /**
-   * Proporção da captura. `phone` limita a largura e centraliza — um
+   * Proporção da captura. `phone` limita a largura e centraliza: um
    * print de celular esticado na coluna inteira fica absurdo.
    * Padrão: `desktop`.
    */
@@ -73,7 +73,7 @@ export type Snippet = {
   language: string;
   /** Caminho do arquivo no repositório de origem, exibido como rótulo. */
   file: string;
-  /** O que esse trecho faz — uma ou duas frases, acima do bloco. */
+  /** O que esse trecho faz, em uma ou duas frases, acima do bloco. */
   description: string;
   code: string;
 };
@@ -84,7 +84,7 @@ export type Architecture = {
   /** Legenda curta com o fluxo, ex: "Request → SNS → Lambda → S3". */
   caption: string;
   /**
-   * Diagrama com traço escuro sobre fundo claro/transparente — o padrão
+   * Diagrama com traço escuro sobre fundo claro/transparente, o padrão
    * do Excalidraw. A página é preta, então ele é invertido no CSS.
    * Marque `false` se o SVG já foi exportado com traço claro.
    */

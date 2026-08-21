@@ -3,7 +3,7 @@
  *
  *   node diagrams/_build.mjs
  *
- * Escrever cena do Excalidraw à mão é frágil — cada elemento tem uma
+ * Escrever cena do Excalidraw à mão é frágil: cada elemento tem uma
  * dúzia de campos obrigatórios e os arrows precisam de ponto E binding.
  * Este script cuida disso; os diagramas em si ficam em `_scenes.mjs`.
  *
@@ -13,7 +13,7 @@
  *   public/projects/[slug]/architecture.svg  o que a página exibe
  *
  * Ou seja, o site já mostra o diagrama sem passo manual. Se você preferir
- * ajustar à mão, abra o `.excalidraw`, edite e exporte o SVG por cima —
+ * ajustar à mão, abra o `.excalidraw`, edite e exporte o SVG por cima,
  * mas aí não rode este script de novo, ou ele sobrescreve o seu export.
  * Mudança para valer é melhor voltar para `_scenes.mjs`.
  */
@@ -26,7 +26,7 @@ import { sceneToSvg } from "./_svg.mjs";
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 
 const STROKE = "#1e1e1e";
-const FONT = 5; // Excalifont — o traço "à mão" padrão
+const FONT = 5; // Excalifont: o traço "à mão" padrão
 const FONT_SIZE = 16;
 const LINE_HEIGHT = 1.25;
 const CHAR_W = 9.0; // Excalifont é irregular; sobra é melhor que texto vazando
@@ -75,7 +75,7 @@ function base(type, props) {
   };
 }
 
-/** Largura/altura aproximadas de um texto — o Excalidraw remede ao editar. */
+/** Largura/altura aproximadas de um texto: o Excalidraw remede ao editar. */
 function measure(text) {
   const lines = text.split("\n");
   const width = Math.max(...lines.map((l) => l.length)) * CHAR_W;
@@ -108,7 +108,7 @@ const PAD_Y = 28;
 
 /**
  * Uma caixa com rótulo centralizado dentro. A largura pedida é um
- * mínimo: se o texto não couber, a caixa cresce — texto vazando pela
+ * mínimo: se o texto não couber, a caixa cresce; texto vazando pela
  * borda é o defeito mais visível de um diagrama gerado.
  * `store: true` desenha canto reto (banco/arquivo); serviço fica arredondado.
  */
@@ -148,7 +148,7 @@ function box(node) {
   return [rect, text];
 }
 
-/** Rótulo solto — usado no canto das molduras e ao lado das setas. */
+/** Rótulo solto, usado no canto das molduras e ao lado das setas. */
 function note(id, x, y, label, extra = {}) {
   return [textElement(id, label, { x, y, textAlign: "left", ...extra })];
 }
@@ -206,7 +206,7 @@ function arrow(id, from, to, opts = {}) {
     const { height } = measure(opts.label);
     const vertical = Math.abs(end.y - start.y) >= Math.abs(end.x - start.x);
     // Na vertical o rótulo fica ao lado da linha; na horizontal, acima e
-    // encostado no início — centralizar num vão curto joga o texto por
+    // encostado no início: centralizar num vão curto joga o texto por
     // cima das caixas dos dois lados.
     out.push(
       ...note(
@@ -263,7 +263,7 @@ function buildScene(build) {
   build(api);
 
   // O binding é de mão dupla: a seta aponta para a caixa, e a caixa
-  // precisa listar a seta — senão arrastar a caixa no editor deixa a
+  // precisa listar a seta, senão arrastar a caixa no editor deixa a
   // seta para trás.
   const byId = new Map(elements.map((el) => [el.id, el]));
   for (const el of elements) {
@@ -308,6 +308,6 @@ for (const [slug, build] of Object.entries(scenes)) {
   );
 
   console.log(
-    `${slug} — ${scene.elements.length} elementos → .excalidraw + architecture.svg`,
+    `${slug}: ${scene.elements.length} elementos → .excalidraw + architecture.svg`,
   );
 }

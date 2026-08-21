@@ -1,6 +1,6 @@
 /**
  * Configuração central do portfólio.
- * Praticamente todo texto "pessoal" do site sai daqui — edite este
+ * Praticamente todo texto "pessoal" do site sai daqui: edite este
  * arquivo antes de mexer nos componentes.
  */
 
@@ -8,7 +8,7 @@ export const site = {
   name: "Yam Ferreira",
   role: "Back-End Developer",
   tagline:
-    "Construo back-ends orientados a eventos — filas, mensageria e serviços que continuam de pé quando o volume cresce.",
+    "Construo back-ends orientados a eventos: filas, mensageria e serviços que continuam de pé quando o volume cresce.",
   email: "yamferreira6@gmail.com",
   github: "https://github.com/yamferreira",
   // TODO: confirmar a URL real do perfil antes do deploy.

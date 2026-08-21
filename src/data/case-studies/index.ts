@@ -18,7 +18,7 @@ export type {
 
 /**
  * Registro dos case studies. Para adicionar um projeto: crie o arquivo
- * ao lado deste e inclua o objeto na lista abaixo — o `slug` precisa
+ * ao lado deste e inclua o objeto na lista abaixo: o `slug` precisa
  * bater com o do projeto em `src/data/projects.ts`.
  */
 export const caseStudies: CaseStudy[] = [

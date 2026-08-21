@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
  * Ícone da tela de início do iOS. Precisa ser bitmap (o Next só aceita
  * jpg/jpeg/png aqui), então é gerado com ImageResponse em vez de SVG.
  *
- * Os paths são os mesmos de icon.svg — desenhar as letras em vez de
+ * Os paths são os mesmos de icon.svg: desenhar as letras em vez de
  * escrevê-las evita depender de fonte embarcada, e a fonte padrão do
  * next/og tem um peso só, que não bate com o monograma do site.
  *

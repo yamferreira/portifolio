@@ -14,7 +14,7 @@ import { caseStudies, getCaseStudy } from "@/data/case-studies";
 import { site } from "@/data/site";
 import { publicFileExists } from "@/lib/public-assets";
 
-/** Todas as rotas são conhecidas no build — nada é gerado sob demanda. */
+/** Todas as rotas são conhecidas no build: nada é gerado sob demanda. */
 export function generateStaticParams() {
   return caseStudies.map((study) => ({ slug: study.slug }));
 }
@@ -29,7 +29,7 @@ export async function generateMetadata(
 
   if (!study) return {};
 
-  const title = `${study.title} — ${site.name}`;
+  const title = `${study.title} · ${site.name}`;
   return {
     title,
     description: study.problem,
@@ -62,7 +62,7 @@ export default async function CaseStudyPage(
   const demos: ResolvedDemo[] = await Promise.all(
     study.demos.map(async (demo) => {
       if (demo.kind === "link") {
-        // Sem o thumbnail o card ainda funciona — cai no rótulo textual.
+        // Sem o thumbnail o card ainda funciona: cai no rótulo textual.
         const hasPoster =
           demo.poster !== undefined && (await publicFileExists(demo.poster));
         return { ...demo, poster: hasPoster ? demo.poster : undefined };

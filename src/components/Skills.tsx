@@ -1,7 +1,7 @@
 import Reveal from "./Reveal";
 import Section from "./Section";
 
-/** Edite livremente — a ordem aqui é a ordem exibida na página. */
+/** Edite livremente: a ordem aqui é a ordem exibida na página. */
 const groups = [
   {
     title: "Back-End",
