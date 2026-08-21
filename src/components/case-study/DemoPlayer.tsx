@@ -20,7 +20,7 @@ export type ResolvedDemo = ResolvedVideo | ResolvedLink | ResolvedImage;
  * interface, <video> mudo em loop (se comporta como GIF, com arquivo
  * muito menor) para uma chamada de API, e card clicável quando o vídeo
  * é longo demais para hospedar aqui. Com mais de uma, abas trocam
- * entre elas — e dá para misturar as três no mesmo projeto.
+ * entre elas, e dá para misturar as três no mesmo projeto.
  */
 export default function DemoPlayer({ demos }: { demos: ResolvedDemo[] }) {
   const [active, setActive] = useState(0);
@@ -76,7 +76,7 @@ function LocalVideo({ demo }: { demo: ResolvedVideo }) {
     <div className="overflow-hidden rounded-2xl border border-line bg-surface">
       {demo.available ? (
         <video
-          // A key força o React a recriar o elemento na troca de aba —
+          // A key força o React a recriar o elemento na troca de aba:
           // sem ela o <video> mantém o src antigo em cache.
           key={demo.src}
           src={demo.src}
@@ -109,7 +109,7 @@ function Screenshot({ demo }: { demo: ResolvedImage }) {
   return (
     <div
       className={`overflow-hidden rounded-2xl border border-line bg-surface ${
-        isPhone ? "px-6 py-8" : ""
+        isPhone ? "mx-auto max-w-[360px] px-4 py-5" : ""
       }`}
     >
       {demo.available ? (
@@ -144,7 +144,7 @@ function ExternalDemo({ demo }: { demo: ResolvedLink }) {
       href={demo.href}
       target="_blank"
       rel="noreferrer"
-      aria-label={`${demo.label} — abrir no ${demo.source}, em nova aba`}
+      aria-label={`${demo.label}, abrir no ${demo.source}, em nova aba`}
       className="group block overflow-hidden rounded-2xl border border-line bg-surface transition-colors duration-300 hover:border-white/20"
     >
       <div className="relative aspect-video w-full overflow-hidden bg-surface-2">

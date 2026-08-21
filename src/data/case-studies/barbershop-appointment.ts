@@ -13,7 +13,7 @@ export const barbershopAppointment: CaseStudy = {
     "Tailwind CSS v4",
   ],
   problem:
-    "Numa barbearia de um barbeiro só, cada horário marcado era uma conversa: o cliente pergunta, o barbeiro confere a agenda, responde, anota. A agenda vivia na cabeça de uma pessoa — e bastava uma distração para dois clientes caírem no mesmo horário.",
+    "Numa visita a uma barbearia, vi a cena de perto: um cliente chegou no horário marcado e o barbeiro, sem graça, admitiu que tinha esquecido de registrar o agendamento. Não foi falta de cuidado, foi falta de sistema. Foi ali que nasceu a ideia do LuizBarber.",
   repo: "https://github.com/yamferreira/barbershop-appointment",
   apiDocs: null,
   architecture: {
@@ -23,45 +23,37 @@ export const barbershopAppointment: CaseStudy = {
   },
   demos: [
     // Capturas da aplicação rodando de verdade, com PostgreSQL local e
-    // dados criados pelo próprio fluxo de agendamento.
-    //
-    // Só a primeira está em largura de celular: o resto do card de
-    // agendamento tem conteúdo mais largo que 390px e sai cortado ali,
-    // então essas ficam em desktop até o layout dar conta.
+    // dados criados pelo próprio fluxo de agendamento. Todas em largura
+    // de celular: é como a interface é usada de verdade.
     {
       kind: "image",
       label: "Escolha de serviços",
       src: "/projects/barbeariaa/servicos.png",
       frame: "phone",
       caption:
-        "Seleção múltipla em grid; a duração total é somada em tempo real — Corte + Barba = 50min — e é ela que define quais horários vão sobrar.",
+        "Seleção múltipla em grid; a duração total é somada em tempo real (Corte de Cabelo + Barba = 1h) e é ela que define quais horários vão sobrar.",
     },
     {
       kind: "image",
-      label: "Calendário e horários",
-      src: "/projects/barbeariaa/horarios.png",
+      label: "Agendar horário",
+      src: "/projects/barbeariaa/agendamento.png",
+      frame: "phone",
       caption:
-        "Domingos e datas passadas já chegam desabilitados, mesmo os futuros. Os horários listados são só os que cabem nos 50min sem colidir nem passar do fechamento.",
-    },
-    {
-      kind: "image",
-      label: "Agendar sem login",
-      src: "/projects/barbeariaa/guest.png",
-      caption:
-        "Resumo do que foi escolhido e um único campo obrigatório: o nome. Telefone é opcional e não existe tela de cadastro no caminho.",
+        "Domingos e datas passadas já chegam desabilitados no calendário. Ao escolher o horário, o resumo mostra serviço, data e valor, e para confirmar só o nome é obrigatório; telefone é opcional e não existe tela de cadastro no caminho.",
     },
     {
       kind: "image",
       label: "Painel do barbeiro",
-      src: "/projects/barbeariaa/admin.png",
+      src: "/projects/barbeariaa/horariosbarbeiro.png",
+      frame: "phone",
       caption:
-        "Agenda do dia agrupada por status, cada linha mostrando o intervalo que ocupa — \"10:00, até 10:50\" é a mesma duração congelada que a checagem de conflito usa.",
+        "Dias com agendamento aparecem marcados no calendário; a lista mostra status e o intervalo que cada um ocupa (a mesma duração congelada que a checagem de conflito usa), com ações para concluir, cancelar ou reagendar.",
     },
   ],
   decisions: [
     {
       decision: "Conflito calculado por intervalo, não por horário exato",
-      why: "Um agendamento ocupa [início, início + duração). Um corte de 1h às 11:00 atropela quem tentar marcar às 12:00 sem repetir a data — comparar só o instante deixaria isso passar. Encostar, porém, não conta: quem termina 13:00 não colide com quem começa 13:00.",
+      why: "Um agendamento ocupa [início, início + duração). Um corte de 1h às 11:00 atropela quem tentar marcar às 12:00 sem repetir a data; comparar só o instante deixaria isso passar. Encostar, porém, não conta: quem termina 13:00 não colide com quem começa 13:00.",
     },
     {
       decision: "Defesa em três camadas para o mesmo horário",
@@ -69,11 +61,11 @@ export const barbershopAppointment: CaseStudy = {
     },
     {
       decision: "O índice único é parcial (WHERE status <> 'CANCELADO')",
-      why: "Um @@unique comum em `date` prenderia o horário para sempre depois de um cancelamento. Com o índice parcial, cancelar libera o slot automaticamente — sem job de limpeza e sem apagar o histórico.",
+      why: "Um @@unique comum em `date` prenderia o horário para sempre depois de um cancelamento. Com o índice parcial, cancelar libera o slot automaticamente, sem job de limpeza e sem apagar o histórico.",
     },
     {
       decision: "Booking.durationMinutes é um snapshot, não um cálculo",
-      why: "A duração é congelada na hora de reservar. Se o barbeiro mudar amanhã o tempo de um corte, a agenda de quem já marcou não pode ser reescrita por trás — e a checagem de conflito consegue ler o intervalo sem agregar a tabela de junção de serviços.",
+      why: "A duração é congelada na hora de reservar. Se o barbeiro mudar amanhã o tempo de um corte, a agenda de quem já marcou não pode ser reescrita por trás, e a checagem de conflito consegue ler o intervalo sem agregar a tabela de junção de serviços.",
     },
   ],
   snippet: {
