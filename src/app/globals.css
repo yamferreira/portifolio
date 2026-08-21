@@ -2,7 +2,7 @@
 
 /* ── Design tokens ─────────────────────────────────────────────
    Monocromático por decisão: preto verdadeiro, branco quase puro
-   e dois cinzas. A hierarquia vem de peso, tamanho e espaço —
+   e dois cinzas. A hierarquia vem de peso, tamanho e espaço,
    nunca de cor. Não existe cor de destaque, e não deve existir.
    ────────────────────────────────────────────────────────────── */
 @theme {

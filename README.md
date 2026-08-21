@@ -1,4 +1,4 @@
-# Portfólio — Yam Ferreira
+# Portfólio · Yam Ferreira
 
 Site pessoal de **Yam Ferreira**, desenvolvedor back-end com foco em Java,
 Spring Boot e arquitetura orientada a eventos na AWS.
@@ -39,12 +39,12 @@ O site sobe em <http://localhost:3000>.
 
 ## Editando o conteúdo
 
-Quase todo o texto do site vive em dois arquivos. **Comece por eles** — na
+Quase todo o texto do site vive em dois arquivos. **Comece por eles**: na
 maioria das vezes não é preciso tocar em componente nenhum.
 
-- **`src/data/site.ts`** — nome, cargo, tagline, e-mail, links sociais, URL
+- **`src/data/site.ts`**: nome, cargo, tagline, e-mail, links sociais, URL
   canônica e os itens de navegação.
-- **`src/data/projects.ts`** — a lista de projetos. Cada item tem `summary`
+- **`src/data/projects.ts`**: a lista de projetos. Cada item tem `summary`
   (uma linha sobre o que é) e `highlight` (o detalhe técnico), e ambos
   aparecem no card. `repo: null` renderiza o projeto como "Repositório em
   breve", sem link.
@@ -77,20 +77,20 @@ e espaço.
 Duas convenções que valem conhecer antes de mexer no CSS:
 
 - **Tokens em `@theme`** (`globals.css`) definem a paleta inteira. Trocar a
-  identidade do site é trocar esses valores — nenhum componente tem cor
+  identidade do site é trocar esses valores; nenhum componente tem cor
   hard-coded.
 - **A escala tipográfica** (`.type-display`, `.type-title`, `.type-heading`,
   `.type-lead`, `.type-body`, `.type-label`) carrega tamanho, `line-height` e
   `letter-spacing` juntos em cada degrau. Isso é proposital: tracking é
-  específico por tamanho — negativo no texto grande, positivo nos rótulos —
+  específico por tamanho (negativo no texto grande, positivo nos rótulos),
   então um valor único estaria errado em algum lugar.
 
 Todo movimento respeita `prefers-reduced-motion`.
 
 ## Pendências
 
-- `src/data/site.ts` — confirmar a URL real do LinkedIn e apontar `url` para
+- `src/data/site.ts`: confirmar a URL real do LinkedIn e apontar `url` para
   o domínio de produção antes do deploy (ele alimenta `metadataBase` e as
   tags Open Graph).
-- `src/data/projects.ts` — adicionar o link do repositório de
+- `src/data/projects.ts`: adicionar o link do repositório de
   **Ticket Marketplace**.

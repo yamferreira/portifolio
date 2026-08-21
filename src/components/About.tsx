@@ -2,7 +2,7 @@ import Reveal from "./Reveal";
 import Section from "./Section";
 
 const facts = [
-  { label: "Formação", value: "ADS · FMU — conclusão em 2027" },
+  { label: "Formação", value: "ADS · FMU · conclusão em 2027" },
   { label: "Foco", value: "Arquitetura orientada a eventos" },
   { label: "Principal", value: "Java 17 · Spring Boot · AWS" },
 ];
@@ -14,7 +14,7 @@ export default function About() {
         <Reveal className="type-lead space-y-8 text-muted">
           <p>
             Antes de programar, eu empreendia. Foi ali que aprendi a olhar para
-            um problema pelo custo que ele gera — e essa é a mesma pergunta que
+            um problema pelo custo que ele gera, e essa é a mesma pergunta que
             eu faço hoje diante de uma arquitetura:{" "}
             <span className="text-fg">o que quebra quando isso crescer?</span>
           </p>

@@ -1,5 +1,5 @@
 export type Project = {
-  /** Identificador estável do projeto — usado como key na listagem. */
+  /** Identificador estável do projeto, usado como key na listagem. */
   slug: string;
   title: string;
   /** Uma linha: o que o projeto é. */
@@ -31,27 +31,16 @@ export const projects: Project[] = [
     highlight:
       "CRUD completo, autenticação social via NextAuth, agendamento com guest checkout e arquitetura single-tenant.",
     stack: ["Next.js", "React", "Prisma", "PostgreSQL", "TailwindCSS", "NextAuth"],
-    repo: "https://github.com/yamferreira/barbeariaa",
-  },
-  {
-    slug: "ticket-marketplace",
-    title: "Ticket Marketplace",
-    summary:
-      "API de marketplace de ingressos com controle de acesso por papéis.",
-    highlight:
-      "RBAC com papéis BUYER / ORGANIZER / ADMIN, autenticação stateless por JWT sobre Spring Security 6.",
-    stack: ["Spring Boot 3", "Spring Security 6", "JWT", "PostgreSQL"],
-    // TODO: adicionar o link do repositório.
-    repo: null,
+    repo: "https://github.com/yamferreira/barbershop-appointment",
   },
   {
     slug: "saas",
-    title: "Template SaaS",
+    title: "SaaS Boilerplate",
     summary:
       "Boilerplate de SaaS com assinatura, autenticação e landing page prontas.",
     highlight:
-      "Integração de pagamentos com Stripe, autenticação via Auth.js e landing page pronta para produção.",
-    stack: ["Next.js", "Firebase", "Auth.js", "Stripe", "PostgreSQL", "TailwindCSS"],
+      "Integração de pagamentos com Stripe, autenticação via Auth.js e cliente da Stripe resolvido de forma idempotente a partir do usuário no Firestore.",
+    stack: ["Next.js", "Firebase", "Auth.js", "Stripe", "TailwindCSS"],
     repo: "https://github.com/yamferreira/saas",
   },
   {
@@ -68,8 +57,19 @@ export const projects: Project[] = [
     title: "Cadastro de Usuário",
     summary: "CRUD de usuários em Spring Boot, com foco em fundamentos de API.",
     highlight:
-      "Camadas de controller, service e repository bem separadas — base limpa para evoluir em projetos maiores.",
+      "Camadas de controller, service e repository bem separadas, base limpa para evoluir em projetos maiores.",
     stack: ["Java", "Spring Boot"],
     repo: "https://github.com/yamferreira/cadastro-usuario",
+  },
+  {
+    slug: "ticket-marketplace",
+    title: "Ticket Marketplace",
+    summary:
+      "API de marketplace de ingressos com controle de acesso por papéis.",
+    highlight:
+      "RBAC com papéis BUYER / ORGANIZER / ADMIN, autenticação stateless por JWT sobre Spring Security 6.",
+    stack: ["Spring Boot 3", "Spring Security 6", "JWT", "PostgreSQL"],
+    // TODO: adicionar o link do repositório.
+    repo: null,
   },
 ];

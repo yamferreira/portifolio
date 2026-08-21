@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
-  /** Atraso em segundos — use para escalonar itens de uma lista. */
+  /** Atraso em segundos, use para escalonar itens de uma lista. */
   delay?: number;
   /** Deslocamento vertical inicial, em px. */
   y?: number;
